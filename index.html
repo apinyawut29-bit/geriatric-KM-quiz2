@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>แบบทดสอบเวชศาสตร์ผู้สูงวัย บทที่ 27–28</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f5ede2;font-family:'Sarabun','Segoe UI',sans-serif;color:#2b2320;min-height:100vh;}
+#root{max-width:820px;margin:0 auto;padding:16px 12px 40px;}
+:root{--m:#8a0c28;--g:#c9a84c;--cream:#fdf8f1;--line:#e7d9c9;--green:#2e7d32;--red:#c62828;}
+.card{background:var(--cream);border:1.5px solid var(--line);border-radius:14px;padding:22px 20px;box-shadow:0 2px 10px rgba(138,12,40,.07);margin-bottom:12px;}
+h1{font-size:19px;font-weight:800;color:var(--m);}
+.sub{font-size:13px;color:#7a6a5d;margin-top:3px;}
+label{display:block;font-size:13.5px;font-weight:700;color:#5a3a2b;margin-bottom:5px;}
+input[type=text],input[type=password],select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:8px;font-size:15px;font-family:inherit;background:#fff;}
+input:focus,select:focus{border-color:var(--m);outline:none;}
+.field{margin-bottom:14px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.row2{grid-template-columns:1fr;}}
+.btn{background:var(--m);color:#fff;border:none;border-radius:10px;padding:12px 22px;font-size:15px;font-weight:700;cursor:pointer;width:100%;}
+.btn:hover{background:#6c0920;}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.btn-s{background:#fff;color:var(--m);border:2px solid var(--m);}
+.pw{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:14px;}
+.pb{height:100%;background:linear-gradient(90deg,var(--m),var(--g));border-radius:6px;transition:width .3s;}
+.pt{display:flex;justify-content:space-between;font-size:12px;color:#9a7a6a;margin-bottom:4px;}
+.qblock{margin-bottom:20px;padding-bottom:18px;border-bottom:1.5px solid var(--line);}
+.qblock:last-child{border-bottom:none;}
+.qh{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px;}
+.qn{background:var(--m);color:#fff;min-width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.qt{font-size:15px;font-weight:600;line-height:1.5;}
+.opt{display:flex;align-items:flex-start;gap:8px;margin:7px 0 0 36px;padding:9px 12px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-size:14px;line-height:1.4;transition:border-color .15s;}
+.opt:hover{border-color:var(--m);}
+.opt.sel{border-color:var(--m);background:#fbeef1;}
+.opt.ok{border-color:var(--green);background:#e9f7ec;}
+.opt.ng{border-color:var(--red);background:#fbeae8;}
+.ol{font-weight:700;color:var(--m);flex-shrink:0;}
+.st{font-size:15px;font-weight:800;color:var(--m);margin:20px 0 12px;padding:7px 13px;background:#fbeef1;border-left:4px solid var(--m);border-radius:4px;}
+.mr{display:flex;gap:9px;align-items:flex-start;margin:8px 0 0 36px;}
+.ml{flex:1;min-width:100px;padding:9px 11px;border:1.5px solid var(--line);border-radius:7px;background:#fff;font-size:13.5px;line-height:1.4;}
+.mr select{flex:2;min-width:150px;width:100%;padding:8px;border:1.5px solid var(--line);border-radius:7px;font-size:13px;font-family:inherit;}
+.mr.ok .ml{border-color:var(--green);background:#e9f7ec;}
+.mr.ng .ml{border-color:var(--red);background:#fbeae8;}
+.rs{text-align:center;padding:20px 0 14px;}
+.bp{font-size:60px;font-weight:900;color:var(--m);line-height:1;}
+.bs{color:#7a6a5d;font-size:14px;margin-top:5px;}
+.badge{display:inline-block;padding:3px 11px;border-radius:20px;font-size:12.5px;font-weight:700;background:#f3e6d6;color:#7a3b1d;margin:4px 3px;}
+.gA{background:#e9f7ec;color:#1b5e20;}.gB{background:#e3f2fd;color:#0d47a1;}.gC{background:#fff8e1;color:#f57f17;}.gD{background:#fbeae8;color:#b71c1c;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top;}
+th{background:#f3e6d6;font-weight:700;}
+tr:nth-child(even) td{background:#fdf8f4;}
+.lk{color:var(--m);font-size:12.5px;cursor:pointer;text-decoration:underline;display:block;text-align:right;margin-top:12px;}
+.alert{background:#fbeef1;border:1.5px solid #e8a0b0;border-radius:8px;padding:10px 13px;font-size:13px;color:#7c0b25;margin-bottom:12px;}
+.fb{display:inline-block;padding:2px 9px;border-radius:11px;font-size:11.5px;font-weight:700;}
+.fF{background:#e3f2fd;color:#0d47a1;}.fP{background:#fff8e1;color:#e65100;}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
+@media(max-width:500px){.cg{grid-template-columns:1fr;}}
+.cb{background:#fff;border:2px solid var(--line);border-radius:10px;padding:12px 10px;cursor:pointer;text-align:left;transition:border-color .15s;}
+.cb:hover{border-color:var(--m);}
+.cb.active{border-color:var(--m);background:#fbeef1;}
+.cn{font-size:11px;color:#9a7a6a;margin-bottom:3px;}
+.ct{font-size:14px;font-weight:700;color:var(--m);line-height:1.3;}
+.ce{font-size:12px;color:#7a6a5d;}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState}=React;
+const PIN="1712";
+const CH=[{"num": 27, "title": "Antibiotic Use in Elderly", "titleTH": "การใช้ยาปฏิชีวนะในผู้สูงอายุ", "mcq": [{"sec": "ปัจจัยเสี่ยงและ PK ยาต้านจุลชีพ", "q": "ปัจจัยใดเพิ่มความเสี่ยงการติดเชื้อในผู้สูงอายุ?", "o": ["ภูมิคุ้มกันแข็งแรง", "สรีรวิทยาเปลี่ยนแปลง เช่น กรดกระเพาะลด ปัสสาวะไหลช้า ต่อมลูกหมากโต", "ออกกำลังสม่ำเสมอ", "อาหารโปรตีนสูง"], "c": 1}, {"sec": "ปัจจัยเสี่ยงและ PK ยาต้านจุลชีพ", "q": "วินิจฉัยการติดเชื้อในผู้สูงอายุยากเพราะเหตุใด?", "o": ["อาการชัดเจนมาก", "อาการและอาการแสดงไม่ชัดเจน แตกต่างจากผู้ใหญ่ วินิจฉัยล่าช้า", "ปฏิเสธการรักษา", "อุปกรณ์ไม่พอ"], "c": 1}, {"sec": "ปัจจัยเสี่ยงและ PK ยาต้านจุลชีพ", "q": "กรดกระเพาะลดลงในผู้สูงอายุส่งผลต่อยาต้านจุลชีพอย่างไร?", "o": ["ทุกชนิดดูดซึมเพิ่ม", "ยาที่ต้องการกรด (Itraconazole, Ketoconazole) ดูดซึมลด ยาที่ไม่ทนกรดดูดซึมเพิ่ม", "ทุกชนิดดูดซึมลด", "ไม่มีผล"], "c": 1}, {"sec": "ปัจจัยเสี่ยงและ PK ยาต้านจุลชีพ", "q": "ไขมันเพิ่มในผู้สูงอายุส่งผลต่อยาต้านจุลชีพชนิดใด?", "o": ["Beta-lactams", "Fluoroquinolones, Macrolides, Tetracycline (ชอบไขมัน) Vd และ t1/2 เพิ่ม", "Aminoglycosides", "ทุกชนิดเท่ากัน"], "c": 1}, {"sec": "ปัจจัยเสี่ยงและ PK ยาต้านจุลชีพ", "q": "Albumin ลดในผู้สูงอายุส่งผลต่อยาใด?", "o": ["ไม่มีผล", "ยาที่จับ Albumin เช่น Sulfadiazine อยู่ในรูปอิสระเพิ่ม", "Beta-lactams", "Vancomycin"], "c": 1}, {"sec": "ปัจจัยเสี่ยงและ PK ยาต้านจุลชีพ", "q": "Phase II metabolism (Conjugation, Acetylation) ในผู้สูงอายุเปลี่ยนอย่างไร?", "o": ["ลดมาก", "ไม่เปลี่ยนแปลงหรือเปลี่ยนน้อย", "เพิ่มขึ้น", "ขึ้นกับเพศ"], "c": 1}, {"sec": "ปัจจัยเสี่ยงและ PK ยาต้านจุลชีพ", "q": "ถ้า Serum creatinine ต่ำมากในผู้สูงอายุ ควรใช้ค่าใดในการคำนวณ CrCl?", "o": ["0.5 mg/dL", "1 mg/dL", "1.5 mg/dL", "2 mg/dL"], "c": 1}, {"sec": "ประเภทยาต้านจุลชีพ", "q": "Aminoglycosides เป็นประเภท Concentration-dependent หมายถึงอะไร?", "o": ["ประสิทธิผลขึ้นกับเวลา", "ประสิทธิผลขึ้นกับความเข้มข้น ยิ่งเข้มข้นสูงฆ่าเชื้อได้มาก", "ขึ้นกับทั้งสองอย่าง", "เท่ากันโดยไม่ขึ้นกับความเข้มข้น"], "c": 1}, {"sec": "ประเภทยาต้านจุลชีพ", "q": "Beta-lactams เป็นประเภทใด?", "o": ["Concentration-dependent", "Time-dependent bactericidal", "Concentration+Time dependent", "ไม่มีประสิทธิผล"], "c": 1}, {"sec": "ประเภทยาต้านจุลชีพ", "q": "Fluoroquinolones เป็นประเภทใด?", "o": ["Time-dependent เท่านั้น", "Concentration dependent with time dependent", "Concentration-dependent เท่านั้น", "ไม่จัดในประเภทใด"], "c": 1}, {"sec": "ผลข้างเคียงยาต้านจุลชีพ", "q": "Aminoglycosides มีผลข้างเคียงหลักคืออะไร?", "o": ["QT prolongation + Hepatotoxicity", "Nephrotoxicity + Ototoxicity", "Rhabdomyolysis + Hepatitis", "Pulmonary toxicity + Neuropathy"], "c": 1}, {"sec": "ผลข้างเคียงยาต้านจุลชีพ", "q": "Quinolones มีผลข้างเคียงพิเศษในผู้สูงอายุคืออะไร?", "o": ["Hyponatremia", "CNS abnormalities, Tendinitis, Delirium, QT prolongation", "Thrombocytopenia", "Hepatic necrosis"], "c": 1}, {"sec": "ผลข้างเคียงยาต้านจุลชีพ", "q": "Nitrofurantoin ควรหลีกเลี่ยงถ้า CrCl ต่ำกว่าเท่าใด?", "o": ["< 60", "< 45", "< 30", "< 15"], "c": 2}, {"sec": "ผลข้างเคียงยาต้านจุลชีพ", "q": "Macrolides มีผลข้างเคียงด้านหัวใจคืออะไร?", "o": ["Bradycardia", "QT prolongation", "Heart block", "Myocarditis"], "c": 1}, {"sec": "ปฏิกิริยาระหว่างยา", "q": "Clarithromycin/Erythromycin + Simvastatin ส่งผลอย่างไร?", "o": ["ลดระดับ Simvastatin", "เพิ่มระดับ Simvastatin เสี่ยง Myopathy/Rhabdomyolysis", "ไม่มีปฏิกิริยา", "ลดผลข้างเคียง Simvastatin"], "c": 1}, {"sec": "ปฏิกิริยาระหว่างยา", "q": "Rifampicin (CYP450 Inducer) ส่งผลต่อ Warfarin, Phenytoin อย่างไร?", "o": ["ระดับเพิ่มขึ้น", "ระดับลดลง ต้องปรับขนาดยา", "ไม่มีปฏิกิริยา", "ออกฤทธิ์เร็วขึ้น"], "c": 1}, {"sec": "ปฏิกิริยาระหว่างยา", "q": "Linezolid + SSRIs/TCAs/MAOIs เกิดภาวะใด?", "o": ["Neuroleptic malignant syndrome", "Serotonin syndrome", "Stevens-Johnson", "Rhabdomyolysis"], "c": 1}, {"sec": "ปฏิกิริยาระหว่างยา", "q": "Quinolones ดูดซึมลดลงเมื่อให้ร่วมกับอะไร?", "o": ["น้ำ", "Antacids Al/Mg, Sucralfate, Iron, Zinc", "อาหารโปรตีน", "Vitamin C"], "c": 1}, {"sec": "ปฏิกิริยาระหว่างยา", "q": "Metronidazole + Warfarin มีผลอย่างไร?", "o": ["ลดฤทธิ์ Warfarin", "เพิ่มฤทธิ์ Warfarin เสี่ยงเลือดออก", "ไม่มีปฏิกิริยา", "ออกฤทธิ์เร็วขึ้น"], "c": 1}, {"sec": "ปฏิกิริยาระหว่างยา", "q": "Metronidazole/Cefoperazone + Alcohol เกิดอะไร?", "o": ["เพิ่มฤทธิ์ยา", "Disulfiram-like reaction", "ลดฤทธิ์ยา", "ไม่มีปฏิกิริยา"], "c": 1}, {"sec": "หลักการใช้ยาต้านจุลชีพ", "q": "หลักการหลักเมื่อสงสัยการติดเชื้อในผู้สูงอายุ?", "o": ["รอผล Culture", "ให้ Empirical therapy ทันที ครอบคลุมเชื้อ ปรับขนาดตามไต", "ให้ขนาดเท่าผู้ใหญ่", "ให้ Broad spectrum เสมอ"], "c": 1}, {"sec": "หลักการใช้ยาต้านจุลชีพ", "q": "ทำไมหลีกเลี่ยง Aminoglycosides ในผู้สูงอายุ?", "o": ["ราคาแพง", "เสี่ยงต่ออาการไม่พึงประสงค์มาก โดยเฉพาะ Nephrotoxicity/Ototoxicity", "ออกฤทธิ์ช้า", "ดูดซึมไม่ดี"], "c": 1}, {"sec": "หลักการใช้ยาต้านจุลชีพ", "q": "การสร้างภูมิคุ้มกันในผู้สูงอายุมีปัญหาอะไร?", "o": ["ตอบสนองต่อวัคซีนดีมาก", "Adaptive immunity เสื่อม T/B lymphocyte ทำงานลด ตอบสนองต่อวัคซีนไม่ดี", "วัคซีนมีผลข้างเคียงมาก", "ฉีดวัคซีนไม่ได้เลย"], "c": 1}, {"sec": "หลักการใช้ยาต้านจุลชีพ", "q": "วัคซีนที่แนะนำในผู้สูงอายุคือข้อใด?", "o": ["วัคซีนอีสุกอีใส", "ไข้หวัดใหญ่ Pneumococcal ตับอักเสบบี งูสวัด", "MMR", "โปลิโอ"], "c": 1}, {"sec": "หลักการใช้ยาต้านจุลชีพ", "q": "ทัศนคติบุคลากรทางการแพทย์ดีทำให้ผู้สูงอายุได้รับวัคซีนในอัตราเท่าใด?", "o": ["ร้อยละ 30", "ร้อยละ 50", "ร้อยละ 70", "ร้อยละ 87"], "c": 3}, {"sec": "หลักการใช้ยาต้านจุลชีพ", "q": "Cotrimoxazole + Sulfonylureas มีผลอย่างไร?", "o": ["เพิ่มน้ำตาล", "เพิ่มความเสี่ยงน้ำตาลต่ำ", "ไม่มีปฏิกิริยา", "ลดการดูดซึม"], "c": 1}, {"sec": "หลักการใช้ยาต้านจุลชีพ", "q": "Vancomycin + Aminoglycosides มีความเสี่ยงต่ออะไร?", "o": ["QT prolongation", "Nephrotoxicity เพิ่มขึ้น", "Stevens-Johnson", "Hepatotoxicity"], "c": 1}, {"sec": "หลักการใช้ยาต้านจุลชีพ", "q": "Clarithromycin + Digoxin มีผลอย่างไร?", "o": ["ลดระดับ Digoxin", "เพิ่มระดับ Digoxin เสี่ยงพิษ", "ไม่มีปฏิกิริยา", "ออกฤทธิ์เร็วขึ้น"], "c": 1}, {"sec": "หลักการใช้ยาต้านจุลชีพ", "q": "Linezolid เป็นประเภทยาต้านจุลชีพที่ฆ่าเชื้อแบบใด?", "o": ["Concentration-dependent", "Time-dependent", "Concentration+Time dependent", "Static เท่านั้น"], "c": 1}], "match": [{"title": "จับคู่ชุดที่ 1: ยาต้านจุลชีพกับผลข้างเคียงสำคัญ", "left": ["Aminoglycosides", "Quinolones", "Vancomycin", "Nitrofurantoin", "Linezolid"], "right": ["Nephrotoxicity และ Ototoxicity ต้องติดตามอย่างใกล้ชิด", "CNS abnormalities, Tendinitis, Delirium, QT prolongation, Sleep disorders", "Nephrotoxicity, Ototoxicity, Red man syndrome เสี่ยงสูงถ้าไตไม่ดี", "Pulmonary fibrosis, Hepatitis, Agranulocytosis หลีกเลี่ยงถ้า CrCl < 30", "Thrombocytopenia และ Anemia"], "correct": [0, 1, 2, 3, 4]}, {"title": "จับคู่ชุดที่ 2: ปฏิกิริยาระหว่างยาต้านจุลชีพที่สำคัญ", "left": ["Clarithromycin + Digoxin", "Cotrimoxazole + Warfarin", "Quinolones + Antacids Al/Mg", "Rifampicin + Warfarin", "Metronidazole + Alcohol"], "right": ["เกิดพิษจาก Digoxin", "เสี่ยงเลือดออกจากเพิ่มฤทธิ์ Warfarin", "ลดการดูดซึมยากลุ่ม Quinolones", "ระดับ Warfarin ลดจาก CYP450 Induction ต้องเพิ่มขนาด", "Disulfiram-like reaction"], "correct": [0, 1, 2, 3, 4]}]}, {"num": 28, "title": "Pharmacological Treatment of Insomnia in Elderly", "titleTH": "การใช้ยารักษาภาวะนอนไม่หลับในผู้สูงอายุ", "mcq": [{"sec": "หลักการรักษาและการเลือกใช้ยา", "q": "การรักษานอนไม่หลับในผู้สูงอายุควรเริ่มด้วยอะไร?", "o": ["BZDs ทันที", "CBT-I เป็นอันดับแรก ผลดีกว่าระยะยาวและผลข้างเคียงน้อย", "Antihistamines ก่อน", "Z-drugs ทันที"], "c": 1}, {"sec": "หลักการรักษาและการเลือกใช้ยา", "q": "ยานอนหลับที่ขึ้นทะเบียนได้รับอนุมัติให้ใช้ระยะสั้นกี่สัปดาห์?", "o": ["1-2 สัปดาห์", "4-5 สัปดาห์", "8-10 สัปดาห์", "3-6 เดือน"], "c": 1}, {"sec": "หลักการรักษาและการเลือกใช้ยา", "q": "Sleep onset insomnia ควรใช้ยาประเภทใด?", "o": ["ยาออกฤทธิ์นาน", "ยาออกฤทธิ์สั้น เพื่อลด Residual sedation", "ยาออกฤทธิ์ > 12 ชม.", "Anticholinergic"], "c": 1}, {"sec": "หลักการรักษาและการเลือกใช้ยา", "q": "ทำไมไม่แนะนำยาออกฤทธิ์ยาว/Active metabolites ในผู้สูงอายุ?", "o": ["ราคาแพง", "เพิ่มความเสี่ยง Falls, Sedation, Cognitive impairment", "ออกฤทธิ์ช้า", "ไม่มีประสิทธิภาพ"], "c": 1}, {"sec": "BZDs", "q": "BZDs ออกฤทธิ์โดยกลไกใด?", "o": ["ยับยั้ง Dopamine", "จับ GABA-A receptor แบบ Nonselective เพิ่ม GABA inhibition", "กระตุ้น Melatonin receptor", "ต้าน Orexin"], "c": 1}, {"sec": "BZDs", "q": "Flurazepam มีระยะออกฤทธิ์ประมาณเท่าใด?", "o": ["2 ชม.", "10-15 ชม.", "120-160 ชม.", "24 ชม."], "c": 2}, {"sec": "BZDs", "q": "ผลข้างเคียงสำคัญของ BZDs ในผู้สูงอายุ?", "o": ["Hypertension", "Daytime sedation, Anterograde amnesia, Falls, Fractures, Dependence", "น้ำหนักขึ้น", "น้ำตาลสูง"], "c": 1}, {"sec": "BZDs", "q": "Rebound insomnia มักเกิดเมื่อใด?", "o": ["ขณะรับประทานยา", "1-2 คืนหลังหยุดยา โดยเฉพาะยาออกฤทธิ์สั้น", "หลังหยุดยา 1 เดือน", "ไม่เกิด"], "c": 1}, {"sec": "BZDs", "q": "Temazepam ระยะออกฤทธิ์และขนาดผู้สูงอายุ?", "o": ["2 ชม. 0.125 mg", "10-15 ชม. 7.5 mg", "120 ชม. 15 mg", "3-5 ชม. 10 mg"], "c": 1}, {"sec": "BZDs", "q": "BZDs ส่วนใหญ่ Metabolize ผ่าน Enzyme ใด ยกเว้นชนิดใด?", "o": ["CYP2D6 ยกเว้น Zolpidem", "CYP3A4 ยกเว้น Temazepam (Glucuronidation)", "MAO ยกเว้น Flurazepam", "CYP1A2 ยกเว้น Lorazepam"], "c": 1}, {"sec": "BZDs", "q": "ถ้าใช้ BZDs ระยะยาวและหยุดยาควรทำอย่างไร?", "o": ["หยุดทันที", "ค่อยๆ ลด 5-10% ทุก 1-2 สัปดาห์", "ลดครึ่งแล้วหยุด", "ไม่ต้อง Taper"], "c": 1}, {"sec": "NBRAs (Z-drugs)", "q": "NBRAs แตกต่างจาก BZDs อย่างไร?", "o": ["ไม่แตกต่าง", "จับ GABA-A แบบ Selective ที่ α1 มีฤทธิ์ Sedation โดยเฉพาะ ผลข้างเคียงอื่นน้อยกว่า", "Melatonin receptor", "ป้องกัน Dependence สมบูรณ์"], "c": 1}, {"sec": "NBRAs (Z-drugs)", "q": "Zolpidem Sublingual (1.75 mg) ใช้กรณีใดและต้องมีเงื่อนไขอะไร?", "o": ["ก่อนนอนเสมอ", "Middle of the night awakening ต้องมีเวลานอนต่ออีก ≥ 4 ชม.", "ทุกกรณี", "ทดแทน IR ได้"], "c": 1}, {"sec": "NBRAs (Z-drugs)", "q": "USFDA แนะนำ Zolpidem ในสตรีขนาดเท่าใดเมื่อเทียบกับชาย?", "o": ["เพิ่มขึ้น", "ต่ำลงเพราะการขจัดลดลงในผู้หญิง", "เท่ากัน", "ไม่มีคำแนะนำแยกเพศ"], "c": 1}, {"sec": "NBRAs (Z-drugs)", "q": "อาหารมีผลต่อ Zolpidem, Zaleplon, Eszopiclone อย่างไร?", "o": ["เพิ่มการดูดซึม", "Delay absorption ควรรับประทานตอนท้องว่าง", "ไม่มีผล", "ลด 50%"], "c": 1}, {"sec": "NBRAs (Z-drugs)", "q": "Zaleplon ถ้าใช้กลางดึกต้องมีเงื่อนไขใด?", "o": ["ไม่สามารถใช้กลางดึก", "มีเวลานอนต่ออีก ≥ 4 ชม.", "ไม่มีเงื่อนไข", "ต้องมี 8 ชม."], "c": 1}, {"sec": "NBRAs (Z-drugs)", "q": "Eszopiclone ขนาดเริ่มต้นที่แนะนำสำหรับผู้ป่วยทุกราย?", "o": ["3 mg", "1 mg เพราะขนาด 2-3 mg อาจบกพร่องทักษะขับขี่", "2 mg สตรี 3 mg ชาย", "0.5 mg"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Ramelteon ออกฤทธิ์และมีข้อดีอย่างไร?", "o": ["GABA agonist ทำให้ง่วง", "Melatonin receptor agonist (MT1/MT2) ช่วย Sleep onset ไม่เกิด Dependence", "Orexin antagonist", "Dopamine agonist"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Suvorexant ออกฤทธิ์อย่างไรและระยะออกฤทธิ์เท่าใด?", "o": ["BZD agonist 2 ชม.", "Orexin receptor antagonist 12 ชม. ลด Wakefulness", "Melatonin agonist 1-2 ชม.", "Serotonin agonist 6 ชม."], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Doxepin ขนาดต่ำ (3 mg) ใช้รักษา Insomnia ประเภทใดเป็นหลัก?", "o": ["Sleep onset เท่านั้น", "Sleep maintenance ลด WASO", "ทั้งสองประเภทเท่ากัน", "Circadian disorder"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "ทำไมหลีกเลี่ยง Diphenhydramine ในผู้สูงอายุ?", "o": ["ราคาแพง", "Anticholinergic effect สูง สับสน ปากแห้ง ปัสสาวะลำบาก", "ออกฤทธิ์ช้า", "ความดันสูง"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "NBRAs (ยกเว้น Zaleplon) Metabolize ผ่าน Enzyme ใดเป็นหลัก?", "o": ["CYP2D6", "CYP3A4", "MAO", "CYP1A2"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Zaleplon Metabolize ผ่านอะไรและระวังยาใด?", "o": ["CYP3A4 ระวัง Ketoconazole", "Aldehyde oxidase + บางส่วน CYP3A4 ระวัง Cimetidine", "MAO ระวัง MAOIs", "CYP2D6 ระวัง Paroxetine"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Withdrawal จาก BZDs ที่หยุดทันทีมีอาการอะไร?", "o": ["ง่วงนอน", "Agitation, Anxiety, Tachycardia, Delirium, Seizures", "ความดันสูง", "น้ำหนักขึ้น"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Beers Criteria 2015 แนะนำเรื่อง BZDs ในผู้สูงอายุอย่างไร?", "o": ["ใช้อย่างเสรี", "หลีกเลี่ยง เพราะเพิ่มความเสี่ยง Falls, Fractures, Cognitive impairment", "เป็น First-line เสมอ", "ใช้ได้ถ้าขนาดต่ำ"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Estazolam และ Temazepam ระยะออกฤทธิ์เท่าใด?", "o": ["Short-action < 4 ชม.", "Intermediate to Long-action 10-15 ชม.", "Ultra-short < 1 ชม.", "Very long > 24 ชม."], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "ยา CYP3A4 Inhibitors เช่น Ketoconazole, Clarithromycin ส่งผลต่อ BZDs อย่างไร?", "o": ["ลดระดับ BZDs", "เพิ่มระดับ BZDs ผลข้างเคียงเพิ่ม", "ไม่มีปฏิกิริยา", "เปลี่ยนกลไก"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Zolpidem IR ใช้ได้กับ Insomnia ประเภทใด?", "o": ["Sleep maintenance", "Sleep onset เนื่องจากออกฤทธิ์เร็ว", "Circadian disorder", "ทุกประเภทเท่ากัน"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Zolpidem ER ต่างจาก IR อย่างไร?", "o": ["ออกฤทธิ์เร็วกว่า", "Biphasic release ออกฤทธิ์นานกว่า ใช้ได้ทั้ง Onset/Maintenance", "ขนาดน้อยกว่า", "ไม่แตกต่าง"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "ผู้ที่รับประทาน Zolpidem ER ไม่ควรทำอะไรในวันรุ่งขึ้น?", "o": ["ออกกำลังกาย", "ขับรถหรือกิจกรรมต้องการความตื่นตัว เพราะระดับยายังสูง", "รับประทานอาหาร", "ดื่มน้ำ"], "c": 1}, {"sec": "Melatonin/Orexin antagonists", "q": "Carbamazepine, Phenytoin (CYP3A4 Inducers) ส่งผลต่อ BZDs อย่างไร?", "o": ["เพิ่มระดับ BZDs", "ลดระดับ BZDs ยาออกฤทธิ์น้อยลง", "ไม่มีปฏิกิริยา", "เปลี่ยนกลไก BZDs"], "c": 1}], "match": [{"title": "จับคู่ชุดที่ 1: ยานอนหลับกับกลุ่มและคุณสมบัติ", "left": ["Zolpidem", "Zaleplon", "Eszopiclone", "Ramelteon", "Suvorexant"], "right": ["NBRA หลายรูปแบบ IR/ER/Sublingual/Spray; IR ใช้ Sleep onset ER ใช้ Onset/Maintenance", "NBRA t1/2 สั้นสุด ใช้ Sleep onset/กลางดึก ต้องมีเวลานอนต่อ ≥ 4 ชม. ระวัง Cimetidine", "NBRA t1/2 ยาวสุด (5-9 ชม.) ใช้ Onset/Maintenance เริ่ม 1 mg ทุกราย", "Melatonin receptor agonist MT1/MT2 ขนาด 8 mg ไม่เกิด Dependence", "Orexin receptor antagonist ขนาด 5 mg ระยะออกฤทธิ์ 12 ชม. ผลข้างเคียงอ่อนล้า"], "correct": [0, 1, 2, 3, 4]}, {"title": "จับคู่ชุดที่ 2: BZD แต่ละชนิดกับระยะออกฤทธิ์", "left": ["Triazolam", "Temazepam", "Lorazepam", "Flurazepam", "Estazolam"], "right": ["Short-action 2 ชม. 0.125 mg เสี่ยง Anterograde amnesia", "Intermediate 10-15 ชม. 7.5 mg ใช้ Sleep maintenance", "Intermediate 10-20 ชม. 0.5 mg ใช้ Anxiety ด้วย", "Long-action 120-160 ชม. 15 mg ไม่แนะนำในผู้สูงอายุ", "Intermediate 12-15 ชม. 0.5 mg"], "correct": [0, 1, 2, 3, 4]}]}];
+function sh(a){const b=[...a.map((_,i)=>i)];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function App(){
+  const [stage,setStage]=useState('home');
+  const [ci,setCi]=useState(null);
+  const [fn,setFn]=useState('');const [ln,setLn]=useState('');const [pt,setPt]=useState('');
+  const [ma,setMa]=useState([]);const [xa,setXa]=useState([]);
+  const [sr,setSr]=useState([]);
+  const [sub,setSub]=useState(false);
+  const [sc,setSc]=useState(0);const [cc,setCc]=useState(0);
+  const [pin,setPin]=useState('');const [pe,setPe]=useState('');
+  const [ar,setAr]=useState([]);const [la,setLa]=useState(false);
+  const [ne,setNe]=useState('');
+  const ch=ci!==null?CH[ci]:null;
+  const TOT=ch?ch.mcq.length+ch.match.reduce((s,m)=>s+m.left.length,0):0;
+  const ans=ma.filter(a=>a!==null).length+xa.reduce((s,a)=>s+a.filter(x=>x!=='').length,0);
+  const go=()=>{
+    if(!fn.trim()||!ln.trim()||!pt||ci===null){setNe('กรุณากรอกข้อมูลให้ครบถ้วน');return;}
+    setNe('');
+    setMa(Array(ch.mcq.length).fill(null));
+    setXa(ch.match.map(m=>Array(m.left.length).fill('')));
+    setSr(ch.match.map(m=>{const idx=sh(m.right.map((_,i)=>i));return idx.map(i=>m.right[i]);}));
+    setSub(false);setStage('quiz');
+  };
+  const sm=(qi,oi)=>{if(sub||ma[qi]!==null)return;const n=[...ma];n[qi]=oi;setMa(n);};
+  const sx=(si,li,v)=>{if(sub)return;const n=xa.map((a,i)=>i===si?[...a]:a);n[si][li]=v;setXa(n);};
+  const submit=async()=>{
+    let c=0;
+    ch.mcq.forEach((q,i)=>{if(ma[i]===q.c)c++;});
+    ch.match.forEach((m,si)=>m.left.forEach((_,li)=>{if(xa[si][li]===m.right[m.correct[li]])c++;}));
+    const p=Math.round((c/TOT)*1000)/10;
+    setSc(p);setCc(c);setSub(true);setStage('result');
+    try{await window.storage.set('qT5:'+Date.now()+'-'+Math.random().toString(36).slice(2,6),JSON.stringify({name:`${fn.trim()} ${ln.trim()}`,type:pt,ch:ch.titleTH,score:p,correct:c,total:TOT,time:new Date().toLocaleString('th-TH')}),true);}catch(e){}
+  };
+  const openA=()=>{setPin('');setPe('');setStage('alog');};
+  const chkP=async()=>{
+    if(pin!==PIN){setPe('PIN ไม่ถูกต้อง');return;}
+    setLa(true);
+    try{const list=await window.storage.list('qT5:',true);const ks=(list&&list.keys)||[];const res=[];for(const k of ks){try{const r=await window.storage.get(k,true);if(r&&r.value)res.push(JSON.parse(r.value));}catch(e){}}res.sort((a,b)=>a.time<b.time?1:-1);setAr(res);setStage('aview');}catch(e){setPe('โหลดข้อมูลไม่สำเร็จ');}
+    setLa(false);
+  };
+  const gr=s=>{if(s>=80)return['A ยอดเยี่ยม','gA'];if(s>=70)return['B ดีมาก','gB'];if(s>=60)return['C ปานกลาง','gC'];return['D ต้องปรับปรุง','gD'];};
+  const secs=[...new Set((ch?.mcq||[]).map(q=>q.sec))];
+  if(stage==='home') return(
+    <div>
+      <div className="card">
+        <div style={{borderBottom:'3px solid var(--m)',paddingBottom:12,marginBottom:16}}>
+          <h1>📚 แบบทดสอบตำราเวชศาสตร์ผู้สูงวัย</h1>
+          <div className="sub">โรงพยาบาลจุฬาลงกรณ์ สภากาชาดไทย — เลือกบทที่ต้องการทดสอบ (50 ข้อต่อบท)</div>
+        </div>
+        <div className="field"><label>เลือกบทที่ต้องการทดสอบ *</label>
+          <div className="cg">
+            {CH.map((c,i)=>(
+              <div key={i} className={`cb${ci===i?' active':''}`} onClick={()=>setCi(i)}>
+                <div className="cn">บทที่ {c.num}</div>
+                <div className="ct">{c.titleTH}</div>
+                <div className="ce">{c.title}</div>
+                <div style={{fontSize:11,color:'var(--m)',marginTop:3,fontWeight:700}}>40 MCQ + 10 จับคู่ = 50 ข้อ</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="row2">
+          <div className="field"><label>ชื่อ *</label><input type="text" value={fn} onChange={e=>setFn(e.target.value)} placeholder="กรอกชื่อ"/></div>
+          <div className="field"><label>นามสกุล *</label><input type="text" value={ln} onChange={e=>setLn(e.target.value)} placeholder="กรอกนามสกุล"/></div>
+        </div>
+        <div className="field"><label>ประเภทเภสัชกร *</label>
+          <select value={pt} onChange={e=>setPt(e.target.value)}>
+            <option value="">-- เลือกประเภท --</option>
+            <option value="FULLTIME">เภสัชกร FULLTIME</option>
+            <option value="PART-TIME">เภสัชกร PART-TIME</option>
+          </select>
+        </div>
+        {ne&&<div className="alert">{ne}</div>}
+        <button className="btn" onClick={go}>เริ่มทำแบบทดสอบ</button>
+        <span className="lk" onClick={openA}>🔐 Admin</span>
+      </div>
+    </div>
+  );
+  if(stage==='quiz'){
+    const pp=Math.round((ans/TOT)*100);
+    return(<div>
+      <div className="card" style={{padding:'16px 18px'}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:5}}>
+          <span style={{fontSize:13.5,fontWeight:700,color:'var(--m)'}}>{fn} {ln} <span className={`fb f${pt==='FULLTIME'?'F':'P'}`}>{pt}</span></span>
+          <span style={{fontSize:12,color:'#7a6a5d'}}>{ans}/{TOT} ข้อ</span>
+        </div>
+        <div style={{fontSize:12,color:'#7a6a5d',marginBottom:5}}>บทที่ {ch.num}: {ch.titleTH}</div>
+        <div className="pt"><span>ความคืบหน้า</span><span>{pp}%</span></div>
+        <div className="pw"><div className="pb" style={{width:pp+'%'}}></div></div>
+      </div>
+      {secs.map(sec=>{
+        const qs=ch.mcq.map((q,i)=>({...q,qi:i})).filter(q=>q.sec===sec);
+        return(<div key={sec} className="card">
+          <div className="st">📌 {sec}</div>
+          {qs.map(({q,o,c,qi})=>(
+            <div className="qblock" key={qi}>
+              <div className="qh"><div className="qn">{qi+1}</div><div className="qt">{q}</div></div>
+              {o.map((opt,oi)=>{let cls='opt';if(ma[qi]!==null){if(oi===c)cls+=' ok';else if(oi===ma[qi])cls+=' ng';}return(<div key={oi} className={cls} onClick={()=>sm(qi,oi)}><span className="ol">{String.fromCharCode(65+oi)}.</span><span>{opt}</span></div>);})}
+            </div>
+          ))}
+        </div>);
+      })}
+      {ch.match.map((m,si)=>{
+        const off=ch.mcq.length+ch.match.slice(0,si).reduce((s,x)=>s+x.left.length,0);
+        return(<div key={si} className="card">
+          <div className="st">🔗 {m.title}</div>
+          {m.left.map((item,li)=>(
+            <div className="qblock" key={li}>
+              <div className="qh"><div className="qn">{off+li+1}</div><div className="qt">จับคู่: <strong>{item}</strong></div></div>
+              {(()=>{const answered=xa[si]&&xa[si][li]!=='';const ok=answered&&xa[si][li]===m.right[m.correct[li]];const cls=answered?(ok?'mr ok':'mr ng'):'mr';return(<div className={cls}><div className="ml">{item}</div><div style={{flex:2}}><select value={xa[si]?xa[si][li]:''} onChange={e=>sx(si,li,e.target.value)} style={{width:'100%',padding:'8px',border:`1.5px solid ${answered?(ok?'var(--green)':'var(--red)'):'var(--line)'}`,borderRadius:'7px',fontSize:'13px',fontFamily:'inherit',background:answered?(ok?'#e9f7ec':'#fbeae8'):'#fff'}}><option value="">-- เลือก --</option>{sr[si]&&sr[si].map((opt,oi)=><option key={oi} value={opt}>{opt}</option>)}</select>{answered&&!ok&&<div style={{fontSize:'11.5px',color:'var(--green)',marginTop:'4px'}}>✓ เฉลย: {m.right[m.correct[li]]}</div>}</div></div>);})()}
+            </div>
+          ))}
+        </div>);
+      })}
+      <div className="card">
+        <button className="btn" disabled={ans<TOT} onClick={submit}>ส่งคำตอบ</button>
+        {ans<TOT&&<p style={{textAlign:'center',fontSize:12,color:'#a87060',marginTop:7}}>ยังตอบไม่ครบ — เหลือ {TOT-ans} ข้อ</p>}
+      </div>
+    </div>);
+  }
+  if(stage==='result'){
+    const [gl,gc]=gr(sc);
+    return(<div>
+      <div className="card">
+        <div className="rs">
+          <div className="bp">{sc}%</div>
+          <div className="bs">ตอบถูก <strong>{cc}</strong> จาก <strong>{TOT}</strong> ข้อ</div>
+          <div style={{marginTop:8}}><span className={`badge ${gc}`}>{gl}</span><span className={`fb f${pt==='FULLTIME'?'F':'P'}`} style={{marginLeft:6}}>{pt}</span></div>
+          <div style={{fontSize:13,color:'#7a6a5d',marginTop:6}}>{fn} {ln} | บทที่ {ch.num}: {ch.titleTH}</div>
+        </div>
+      </div>
+      {secs.map(sec=>{
+        const qs=ch.mcq.map((q,i)=>({...q,qi:i})).filter(q=>q.sec===sec);
+        return(<div key={sec} className="card">
+          <div className="st">📌 {sec}</div>
+          {qs.map(({q,o,c:ca,qi})=>(
+            <div className="qblock" key={qi}>
+              <div className="qh"><div className="qn">{qi+1}</div><div className="qt">{q}</div></div>
+              {o.map((opt,oi)=>{let cls='opt';if(oi===ca)cls+=' ok';else if(oi===ma[qi])cls+=' ng';return(<div key={oi} className={cls}><span className="ol">{String.fromCharCode(65+oi)}.</span><span>{opt}</span></div>);})}
+            </div>
+          ))}
+        </div>);
+      })}
+      {ch.match.map((m,si)=>{
+        const off=ch.mcq.length+ch.match.slice(0,si).reduce((s,x)=>s+x.left.length,0);
+        return(<div key={si} className="card">
+          <div className="st">🔗 {m.title}</div>
+          {m.left.map((item,li)=>{const ok=xa[si]&&xa[si][li]===m.right[m.correct[li]];return(
+            <div className="qblock" key={li}>
+              <div className="qh"><div className="qn">{off+li+1}</div><div className="qt">{item}</div></div>
+              <div className={`mr ${ok?'ok':'ng'}`}><div className="ml">{item}</div><div style={{flex:2,padding:'9px 11px',border:`1.5px solid ${ok?'var(--green)':'var(--red)'}`,borderRadius:7,background:ok?'#e9f7ec':'#fbeae8',fontSize:13.5}}>
+                {xa[si]&&xa[si][li]||'(ไม่ได้ตอบ)'}
+                {!ok&&<div style={{fontSize:11.5,color:'var(--green)',marginTop:4}}>✓ เฉลย: {m.right[m.correct[li]]}</div>}
+              </div></div>
+            </div>
+          );})}
+        </div>);
+      })}
+      <div className="card" style={{display:'flex',gap:10}}>
+        <button className="btn btn-s" onClick={()=>{setSub(false);setStage('home');}}>กลับหน้าหลัก</button>
+        <div style={{flex:1}}/>
+        <div style={{fontSize:12,color:'#9a7a6a',alignSelf:'center'}}>คะแนนถูกบันทึกแล้ว</div>
+      </div>
+    </div>);
+  }
+  if(stage==='alog') return(<div className="card">
+    <h1 style={{marginBottom:12}}>🔐 Admin Login</h1>
+    <div className="field"><label>PIN</label><input type="password" value={pin} onChange={e=>setPin(e.target.value)} onKeyDown={e=>e.key==='Enter'&&chkP()} placeholder="กรอก PIN"/></div>
+    {pe&&<div className="alert">{pe}</div>}
+    <div style={{display:'flex',gap:10}}><button className="btn" onClick={chkP} disabled={la}>{la?'กำลังโหลด...':'ยืนยัน'}</button><button className="btn btn-s" onClick={()=>setStage('home')}>กลับ</button></div>
+  </div>);
+  if(stage==='aview'){
+    const avg=a=>a.length?Math.round(a.reduce((s,r)=>s+r.score,0)/a.length*10)/10:'-';
+    const ft=ar.filter(r=>r.type==='FULLTIME');const pt2=ar.filter(r=>r.type==='PART-TIME');
+    return(<div className="card">
+      <h1 style={{marginBottom:6}}>📊 ผลคะแนนทั้งหมด ({ar.length} รายการ)</h1>
+      <div className="sub" style={{marginBottom:14}}>FULLTIME {ft.length} คน avg {avg(ft)}% | PART-TIME {pt2.length} คน avg {avg(pt2)}%</div>
+      <table><thead><tr><th>#</th><th>ชื่อ-นามสกุล</th><th>ประเภท</th><th>บท</th><th>%</th><th>ถูก/รวม</th><th>เวลา</th></tr></thead><tbody>
+        {ar.length===0&&<tr><td colSpan="7" style={{textAlign:'center',color:'#999',padding:14}}>ยังไม่มีข้อมูล</td></tr>}
+        {ar.map((r,i)=>(<tr key={i}><td>{i+1}</td><td>{r.name}</td><td><span className={`fb f${r.type==='FULLTIME'?'F':'P'}`}>{r.type}</span></td><td style={{fontSize:11.5}}>{r.ch}</td><td><strong>{r.score}</strong></td><td>{r.correct}/{r.total}</td><td style={{fontSize:11}}>{r.time}</td></tr>))}
+      </tbody></table>
+      <button className="btn btn-s" style={{marginTop:14}} onClick={()=>setStage('home')}>กลับ</button>
+    </div>);
+  }
+  return null;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
