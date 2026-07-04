@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>แบบทดสอบเวชศาสตร์ผู้สูงวัย บทที่ 23</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f5ede2;font-family:'Sarabun','Segoe UI',sans-serif;color:#2b2320;min-height:100vh;}
+#root{max-width:820px;margin:0 auto;padding:16px 12px 40px;}
+:root{--m:#8a0c28;--g:#c9a84c;--cream:#fdf8f1;--line:#e7d9c9;--green:#2e7d32;--red:#c62828;}
+.card{background:var(--cream);border:1.5px solid var(--line);border-radius:14px;padding:22px 20px;box-shadow:0 2px 10px rgba(138,12,40,.07);margin-bottom:12px;}
+h1{font-size:19px;font-weight:800;color:var(--m);}
+.sub{font-size:13px;color:#7a6a5d;margin-top:3px;}
+label{display:block;font-size:13.5px;font-weight:700;color:#5a3a2b;margin-bottom:5px;}
+input[type=text],input[type=password],select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:8px;font-size:15px;font-family:inherit;background:#fff;}
+input:focus,select:focus{border-color:var(--m);outline:none;}
+.field{margin-bottom:14px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.row2{grid-template-columns:1fr;}}
+.btn{background:var(--m);color:#fff;border:none;border-radius:10px;padding:12px 22px;font-size:15px;font-weight:700;cursor:pointer;width:100%;}
+.btn:hover{background:#6c0920;}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.btn-s{background:#fff;color:var(--m);border:2px solid var(--m);}
+.pw{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:14px;}
+.pb{height:100%;background:linear-gradient(90deg,var(--m),var(--g));border-radius:6px;transition:width .3s;}
+.pt{display:flex;justify-content:space-between;font-size:12px;color:#9a7a6a;margin-bottom:4px;}
+.qblock{margin-bottom:20px;padding-bottom:18px;border-bottom:1.5px solid var(--line);}
+.qblock:last-child{border-bottom:none;}
+.qh{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px;}
+.qn{background:var(--m);color:#fff;min-width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.qt{font-size:15px;font-weight:600;line-height:1.5;}
+.opt{display:flex;align-items:flex-start;gap:8px;margin:7px 0 0 36px;padding:9px 12px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-size:14px;line-height:1.4;transition:border-color .15s;}
+.opt:hover{border-color:var(--m);}
+.opt.sel{border-color:var(--m);background:#fbeef1;}
+.opt.ok{border-color:var(--green);background:#e9f7ec;}
+.opt.ng{border-color:var(--red);background:#fbeae8;}
+.ol{font-weight:700;color:var(--m);flex-shrink:0;}
+.st{font-size:15px;font-weight:800;color:var(--m);margin:20px 0 12px;padding:7px 13px;background:#fbeef1;border-left:4px solid var(--m);border-radius:4px;}
+.mr{display:flex;gap:9px;align-items:flex-start;margin:8px 0 0 36px;}
+.ml{flex:1;min-width:100px;padding:9px 11px;border:1.5px solid var(--line);border-radius:7px;background:#fff;font-size:13.5px;line-height:1.4;}
+.mr select{flex:2;min-width:150px;width:100%;padding:8px;border:1.5px solid var(--line);border-radius:7px;font-size:13px;font-family:inherit;}
+.mr.ok .ml{border-color:var(--green);background:#e9f7ec;}
+.mr.ng .ml{border-color:var(--red);background:#fbeae8;}
+.rs{text-align:center;padding:20px 0 14px;}
+.bp{font-size:60px;font-weight:900;color:var(--m);line-height:1;}
+.bs{color:#7a6a5d;font-size:14px;margin-top:5px;}
+.badge{display:inline-block;padding:3px 11px;border-radius:20px;font-size:12.5px;font-weight:700;background:#f3e6d6;color:#7a3b1d;margin:4px 3px;}
+.gA{background:#e9f7ec;color:#1b5e20;}.gB{background:#e3f2fd;color:#0d47a1;}.gC{background:#fff8e1;color:#f57f17;}.gD{background:#fbeae8;color:#b71c1c;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top;}
+th{background:#f3e6d6;font-weight:700;}
+tr:nth-child(even) td{background:#fdf8f4;}
+.lk{color:var(--m);font-size:12.5px;cursor:pointer;text-decoration:underline;display:block;text-align:right;margin-top:12px;}
+.alert{background:#fbeef1;border:1.5px solid #e8a0b0;border-radius:8px;padding:10px 13px;font-size:13px;color:#7c0b25;margin-bottom:12px;}
+.fb{display:inline-block;padding:2px 9px;border-radius:11px;font-size:11.5px;font-weight:700;}
+.fF{background:#e3f2fd;color:#0d47a1;}.fP{background:#fff8e1;color:#e65100;}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
+@media(max-width:500px){.cg{grid-template-columns:1fr;}}
+.cb{background:#fff;border:2px solid var(--line);border-radius:10px;padding:12px 10px;cursor:pointer;text-align:left;transition:border-color .15s;}
+.cb:hover{border-color:var(--m);}
+.cb.active{border-color:var(--m);background:#fbeef1;}
+.cn{font-size:11px;color:#9a7a6a;margin-bottom:3px;}
+.ct{font-size:14px;font-weight:700;color:var(--m);line-height:1.3;}
+.ce{font-size:12px;color:#7a6a5d;}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState}=React;
+const PIN="1712";
+const CH=[{"num": 23, "title": "Sleep Problem in Elderly", "titleTH": "ปัญหาการนอนในผู้สูงอายุ", "mcq": [{"sec": "กลไกและโครงสร้างการนอนหลับ", "q": "กลไกที่ควบคุมการนอนหลับในภาวะปกติมีกี่ระบบ?", "o": ["1 ระบบ คือ Circadian process", "2 ระบบ คือ Process C (Circadian) และ Process S (Homeostasis)", "3 ระบบ คือ Circadian, REM และ NREM", "4 ระบบ คือ N1, N2, N3 และ REM"], "c": 1}, {"sec": "กลไกและโครงสร้างการนอนหลับ", "q": "ศูนย์ควบคุม Circadian process (Process C) อยู่บริเวณใด?", "o": ["Hippocampus", "Amygdala", "Suprachiasmatic nucleus (SCN)", "Pineal gland"], "c": 2}, {"sec": "กลไกและโครงสร้างการนอนหลับ", "q": "Process S (Homeostasis) กระตุ้นความง่วงโดยการสะสมสารใด?", "o": ["Melatonin", "Adenosine", "Dopamine", "Serotonin"], "c": 1}, {"sec": "กลไกและโครงสร้างการนอนหลับ", "q": "Stage N3 (Slow wave sleep) มีบทบาทสำคัญด้านใด?", "o": ["ช่วยในการฝัน", "ซ่อมแซมร่างกาย จัดการความจำ และหลั่ง Growth hormone", "ควบคุม Circadian rhythm", "ป้องกัน Sleep apnea"], "c": 1}, {"sec": "กลไกและโครงสร้างการนอนหลับ", "q": "ช่วง REM sleep มีลักษณะสำคัญคืออะไร?", "o": ["ร่างกายเคลื่อนไหวได้อย่างอิสระ", "กล้ามเนื้อถูกยับยั้ง มีการฝัน และมีความสำคัญในการตกผลึกความจำ", "ไม่มีการฝัน", "หลับลึกที่สุด"], "c": 1}, {"sec": "กลไกและโครงสร้างการนอนหลับ", "q": "ระยะเวลาการนอนที่เหมาะสมสำหรับผู้สูงวัย (65+ ปี) คือกี่ชั่วโมงต่อคืน?", "o": ["5-6 ชั่วโมง", "7-8 ชั่วโมง", "9-10 ชั่วโมง", "10-12 ชั่วโมง"], "c": 1}, {"sec": "กลไกและโครงสร้างการนอนหลับ", "q": "แต่ละ Sleep cycle กินเวลาประมาณเท่าใด?", "o": ["30-60 นาที", "90-120 นาที", "150-180 นาที", "200-240 นาที"], "c": 1}, {"sec": "กลไกและโครงสร้างการนอนหลับ", "q": "การเปลี่ยนแปลงโครงสร้างการนอนในผู้สูงอายุที่พบคือข้อใด?", "o": ["Slow wave sleep เพิ่มขึ้น", "Slow wave sleep ลดลง Stage N1/N2 เพิ่มขึ้น ประสิทธิภาพการนอนลดลง", "REM sleep เพิ่มมากขึ้น", "ทุก Stage เท่ากัน"], "c": 1}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "ความชุกโรคนอนไม่หลับในผู้สูงอายุ vs ผู้ใหญ่ทั่วไปคือเท่าใด?", "o": ["ร้อยละ 5 vs 2", "ร้อยละ 20 vs 9", "ร้อยละ 30 vs 15", "เท่ากันที่ 10%"], "c": 1}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "Chronic Insomnia ตาม ICSD-3 หมายถึงมีอาการนานอย่างน้อยเท่าใด?", "o": ["1 สัปดาห์", "1 เดือน", "3 เดือน", "6 เดือน"], "c": 2}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "Maintenance insomnia คือลักษณะใด?", "o": ["นอนหลับยากในช่วงแรก", "ตื่นกลางดึกบ่อย ไม่สามารถนอนหลับต่อเนื่องได้", "ตื่นเช้าเร็วกว่าปกติ", "นอนมากเกินไป"], "c": 1}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "Benzodiazepines เมื่อใช้ระยะยาวมีรายงานว่าเพิ่มโอกาสเกิดอะไร?", "o": ["Hypertension", "ภาวะสมองเสื่อม", "Diabetes", "โรคหัวใจ"], "c": 1}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "ยาความดันกลุ่มใดมีผลรบกวนการนอนหลับ?", "o": ["ACE inhibitors", "Beta-blockers, Alpha-blockers", "Calcium channel blockers", "ARBs"], "c": 1}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "CBT-I ประกอบด้วยองค์ประกอบใดบ้าง?", "o": ["ยานอนหลับเป็นหลัก", "Sleep hygiene, Stimulus control, Sleep restriction, Relaxation training, Cognitive therapy", "การฉีดวัคซีน", "การผ่าตัดสมอง"], "c": 1}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "Stimulus control หมายถึงอะไร?", "o": ["ใช้ยา Stimulants", "จำกัดการใช้เตียงไว้เพื่อการนอนและกิจกรรมทางเพศเท่านั้น", "กระตุ้นสมองด้วยไฟฟ้า", "ออกกำลังกายก่อนนอน"], "c": 1}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "Sleep restriction therapy มีหลักการอย่างไร?", "o": ["นอนให้นานที่สุด", "ลดระยะเวลาการนอนในช่วงแรกเพื่อเพิ่ม Homeostatic sleep drive", "นอนกลางวันชดเชย", "ใช้ยาเพื่อลดความต้องการการนอน"], "c": 1}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "Ramelteon กลุ่มยาใดและขนาดที่แนะนำในผู้สูงอายุ?", "o": ["Benzodiazepine 0.125 mg", "Melatonin receptor agonist 8 mg", "Non-benzodiazepine 5 mg", "Orexin antagonist 5 mg"], "c": 1}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "Suvorexant กลุ่มยาใดและระยะออกฤทธิ์เท่าใด?", "o": ["Melatonin receptor agonist 1-2 ชม.", "Non-benzodiazepine 4.5 ชม.", "Orexin receptor antagonist 12 ชม.", "Atypical antipsychotic 6 ชม."], "c": 2}, {"sec": "โรคนอนไม่หลับ (Insomnia)", "q": "Doxepin ขนาดต่ำ (3 mg) มีระยะออกฤทธิ์ประมาณเท่าใด?", "o": ["3-5 ชม.", "15.3 ชม.", "6-8 ชม.", "1-2 ชม."], "c": 1}, {"sec": "ภาวะหยุดหายใจขณะหลับ (OSA)", "q": "OSA เกิดจากสาเหตุใด?", "o": ["สมองหยุดทำงาน", "ทางเดินหายใจส่วนต้นอุดกั้น ออกซิเจนลดลง", "กะบังลมกระตุก", "Melatonin มากเกิน"], "c": 1}, {"sec": "ภาวะหยุดหายใจขณะหลับ (OSA)", "q": "การรักษาหลักของ OSA คืออะไร?", "o": ["Benzodiazepines", "CPAP (Continuous Positive Airway Pressure)", "ยาขยายหลอดลม", "Melatonin ขนาดสูง"], "c": 1}, {"sec": "ภาวะหยุดหายใจขณะหลับ (OSA)", "q": "ต้องใช้ CPAP อย่างน้อยกี่ชั่วโมงต่อคืนจึงได้ประโยชน์จากการรักษา?", "o": ["2 ชม.", "4 ชม.", "6 ชม.", "8 ชม."], "c": 1}, {"sec": "ภาวะหยุดหายใจขณะหลับ (OSA)", "q": "ผู้ป่วย Alzheimer's disease ระดับรุนแรงพบ OSA ได้ประมาณกี่เปอร์เซ็นต์?", "o": ["ร้อยละ 10", "ร้อยละ 30", "ร้อยละ 63", "ร้อยละ 90"], "c": 2}, {"sec": "กลุ่มอาการขาอยู่ไม่สุขและขากระตุก", "q": "RLS เชื่อว่าเกิดจากความผิดปกติของสารสื่อประสาทใด?", "o": ["Serotonin", "Dopamine", "Norepinephrine", "Acetylcholine"], "c": 1}, {"sec": "กลุ่มอาการขาอยู่ไม่สุขและขากระตุก", "q": "ความชุก RLS ในผู้สูงอายุอยู่ที่ประมาณเท่าใด?", "o": ["ร้อยละ 1-2", "ร้อยละ 9-20", "ร้อยละ 30-40", "ร้อยละ 50"], "c": 1}, {"sec": "กลุ่มอาการขาอยู่ไม่สุขและขากระตุก", "q": "ยา First-line รักษา RLS คือกลุ่มใด?", "o": ["Benzodiazepines", "Dopamine agonists เช่น Ropinirole, Pramipexole", "SSRIs", "Antihistamines"], "c": 1}, {"sec": "กลุ่มอาการขาอยู่ไม่สุขและขากระตุก", "q": "PLMI ที่ถือว่าผิดปกติในผู้ใหญ่คือค่าเท่าใด?", "o": ["> 5 ครั้ง/ชม.", "> 15 ครั้ง/ชม.", "> 25 ครั้ง/ชม.", "> 30 ครั้ง/ชม."], "c": 1}, {"sec": "ภาวะวงจรการนอนผิดปกติ", "q": "Advanced Sleep Phase Disorder (ASPD) คือภาวะใด?", "o": ["นอนดึกและตื่นสาย", "หลับเร็วกว่าปกติ ~2 ชม. และตื่นเร็วตามมา", "ไม่มีรูปแบบการนอนที่ชัดเจน", "Sleep cycle ยาวผิดปกติ"], "c": 1}, {"sec": "ภาวะวงจรการนอนผิดปกติ", "q": "การรักษา ASPD ด้วย Light therapy ควรให้สัมผัสแสงเวลาใดและระดับความสว่างเท่าใด?", "o": ["เช้า 2,500 lux", "เย็น 19:00-20:00 น. ระดับ 2,500-10,000 lux", "กลางคืน 10,000 lux", "บ่ายทุกวัน"], "c": 1}, {"sec": "ภาวะวงจรการนอนผิดปกติ", "q": "Irregular Sleep-Wake Disorder (ISWD) พบบ่อยในผู้ป่วยกลุ่มใด?", "o": ["โรคเบาหวาน", "สมองเสื่อม, อุบัติเหตุทางศีรษะ หรือมีปัญหาทางสติปัญญา", "COPD", "โรคหัวใจล้มเหลว"], "c": 1}, {"sec": "โรคนอนละเมอ REM Behavior Disorder", "q": "REM Sleep Behavior Disorder (RBD) เกิดจากกลไกใด?", "o": ["Adenosine สะสม", "สูญเสียการยับยั้งการเคลื่อนไหวร่างกายขณะ REM (REM without atonia)", "Melatonin ลดลง", "SCN ผิดปกติ"], "c": 1}, {"sec": "โรคนอนละเมอ REM Behavior Disorder", "q": "RBD พบบ่อยในโรค Neurodegenerative ชนิดใด?", "o": ["Alzheimer's disease", "Parkinson's disease, Diffuse Lewy Body Dementia, MSA", "Frontotemporal Dementia", "Vascular Dementia"], "c": 1}, {"sec": "โรคนอนละเมอ REM Behavior Disorder", "q": "อุบัติการณ์ RBD ในผู้สูงอายุพบได้ประมาณกี่เปอร์เซ็นต์?", "o": ["ร้อยละ 1", "ร้อยละ 7.7", "ร้อยละ 20", "ร้อยละ 35"], "c": 1}, {"sec": "สุขอนามัยการนอน", "q": "ควรหลีกเลี่ยงชา/กาแฟอย่างน้อยกี่ชั่วโมงก่อนนอน?", "o": ["2 ชม.", "4 ชม.", "6 ชม.", "8 ชม."], "c": 2}, {"sec": "สุขอนามัยการนอน", "q": "การงีบกลางวันที่แนะนำในผู้ที่ไม่มีโรคนอนไม่หลับคือข้อใด?", "o": ["ไม่เกิน 20 นาที และไม่หลังบ่ายสามโมง", "นานเท่าที่ต้องการ", "ห้ามงีบเด็ดขาด", "1-2 ชั่วโมงได้"], "c": 0}, {"sec": "สุขอนามัยการนอน", "q": "Stimulus control: ถ้าไม่หลับภายในกี่นาที ให้ลุกออกจากเตียง?", "o": ["10 นาที", "20 นาที", "30 นาที", "60 นาที"], "c": 1}, {"sec": "สุขอนามัยการนอน", "q": "ถ้าจะดื่มแอลกอฮอล์ควรดื่มก่อนนอนอย่างน้อยกี่ชั่วโมง?", "o": ["1-2 ชม.", "4-6 ชม.", "8 ชม.", "ห้ามดื่มเลย"], "c": 1}, {"sec": "ยานอนหลับในผู้สูงอายุ", "q": "Triazolam กลุ่ม BZD ระยะออกฤทธิ์และขนาดแนะนำในผู้สูงอายุ?", "o": ["Long action 15 mg", "Short action 0.125 mg", "Intermediate 7.5 mg", "Melatonin agonist 8 mg"], "c": 1}, {"sec": "ยานอนหลับในผู้สูงอายุ", "q": "Zolpidem ขนาดแนะนำในผู้สูงอายุและระยะออกฤทธิ์?", "o": ["5-10 mg, 6-8 ชม.", "2.5-5 mg, 1.5-4.5 ชม.", "10 mg, 10 ชม.", "1 mg, 12 ชม."], "c": 1}, {"sec": "ยานอนหลับในผู้สูงอายุ", "q": "Trazodone ขนาดเริ่มต้นและผลข้างเคียงหลักที่ต้องระวัง?", "o": ["50 mg, Tachycardia", "25 mg, Orthostatic hypotension, ง่วงนอนกลางวัน", "10 mg, QT prolongation", "100 mg, Hypertension"], "c": 1}], "match": [{"title": "จับคู่ชุดที่ 1: ยานอนหลับกับกลุ่มยา", "left": ["Triazolam", "Ramelteon", "Suvorexant", "Trazodone", "Mirtazapine"], "right": ["BZD short-action ขนาด 0.125 mg ผู้สูงอายุ", "Melatonin receptor agonist 8 mg ผลข้างเคียงปวดศีรษะ ง่วง", "Orexin antagonist 5 mg ระยะออกฤทธิ์ 12 ชม.", "Antidepressant เริ่ม 25 mg ระวัง Orthostatic hypotension", "Antidepressant เริ่ม 7.5 mg ผลข้างเคียงง่วง น้ำหนักขึ้น หิวบ่อย"], "correct": [0, 1, 2, 3, 4]}, {"title": "จับคู่ชุดที่ 2: ภาวะผิดปกติจากการนอนกับลักษณะเด่น", "left": ["Psychophysiological insomnia", "Paradoxical insomnia", "ASPD", "RLS", "RBD"], "right": ["ตื่นตัวสูง วิตกกังวลเรื่องการนอน มีพฤติกรรมส่งเสริมให้นอนไม่หลับ", "แจ้งว่านอนไม่หลับรุนแรงแต่ผลตรวจการนอนปกติ", "หลับเร็วกว่าปกติ 2 ชม. ตื่นเร็ว ถ่ายทอดทาง Autosomal dominant", "ไม่สบายขา แย่ลงเมื่ออยู่นิ่ง ดีขึ้นเมื่อขยับขา มักเป็นตอนเย็น", "ฝันร้ายและออกท่าทางสอดคล้องกับฝัน พบใน Parkinson's disease"], "correct": [0, 1, 2, 3, 4]}]}];
+function sh(a){const b=[...a.map((_,i)=>i)];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function App(){
+  const [stage,setStage]=useState('home');
+  const [ci,setCi]=useState(null);
+  const [fn,setFn]=useState('');const [ln,setLn]=useState('');const [pt,setPt]=useState('');
+  const [ma,setMa]=useState([]);const [xa,setXa]=useState([]);
+  const [sr,setSr]=useState([]);
+  const [sub,setSub]=useState(false);
+  const [sc,setSc]=useState(0);const [cc,setCc]=useState(0);
+  const [pin,setPin]=useState('');const [pe,setPe]=useState('');
+  const [ar,setAr]=useState([]);const [la,setLa]=useState(false);
+  const [ne,setNe]=useState('');
+  const ch=ci!==null?CH[ci]:null;
+  const TOT=ch?ch.mcq.length+ch.match.reduce((s,m)=>s+m.left.length,0):0;
+  const ans=ma.filter(a=>a!==null).length+xa.reduce((s,a)=>s+a.filter(x=>x!=='').length,0);
+  const go=()=>{
+    if(!fn.trim()||!ln.trim()||!pt||ci===null){setNe('กรุณากรอกข้อมูลให้ครบถ้วน');return;}
+    setNe('');
+    setMa(Array(ch.mcq.length).fill(null));
+    setXa(ch.match.map(m=>Array(m.left.length).fill('')));
+    setSr(ch.match.map(m=>{const idx=sh(m.right.map((_,i)=>i));return idx.map(i=>m.right[i]);}));
+    setSub(false);setStage('quiz');
+  };
+  const sm=(qi,oi)=>{if(sub||ma[qi]!==null)return;const n=[...ma];n[qi]=oi;setMa(n);};
+  const sx=(si,li,v)=>{if(sub)return;const n=xa.map((a,i)=>i===si?[...a]:a);n[si][li]=v;setXa(n);};
+  const submit=async()=>{
+    let c=0;
+    ch.mcq.forEach((q,i)=>{if(ma[i]===q.c)c++;});
+    ch.match.forEach((m,si)=>m.left.forEach((_,li)=>{if(xa[si][li]===m.right[m.correct[li]])c++;}));
+    const p=Math.round((c/TOT)*1000)/10;
+    setSc(p);setCc(c);setSub(true);setStage('result');
+    try{await window.storage.set('qT5:'+Date.now()+'-'+Math.random().toString(36).slice(2,6),JSON.stringify({name:`${fn.trim()} ${ln.trim()}`,type:pt,ch:ch.titleTH,score:p,correct:c,total:TOT,time:new Date().toLocaleString('th-TH')}),true);}catch(e){}
+  };
+  const openA=()=>{setPin('');setPe('');setStage('alog');};
+  const chkP=async()=>{
+    if(pin!==PIN){setPe('PIN ไม่ถูกต้อง');return;}
+    setLa(true);
+    try{const list=await window.storage.list('qT5:',true);const ks=(list&&list.keys)||[];const res=[];for(const k of ks){try{const r=await window.storage.get(k,true);if(r&&r.value)res.push(JSON.parse(r.value));}catch(e){}}res.sort((a,b)=>a.time<b.time?1:-1);setAr(res);setStage('aview');}catch(e){setPe('โหลดข้อมูลไม่สำเร็จ');}
+    setLa(false);
+  };
+  const gr=s=>{if(s>=80)return['A ยอดเยี่ยม','gA'];if(s>=70)return['B ดีมาก','gB'];if(s>=60)return['C ปานกลาง','gC'];return['D ต้องปรับปรุง','gD'];};
+  const secs=[...new Set((ch?.mcq||[]).map(q=>q.sec))];
+  if(stage==='home') return(
+    <div>
+      <div className="card">
+        <div style={{borderBottom:'3px solid var(--m)',paddingBottom:12,marginBottom:16}}>
+          <h1>📚 แบบทดสอบตำราเวชศาสตร์ผู้สูงวัย</h1>
+          <div className="sub">โรงพยาบาลจุฬาลงกรณ์ สภากาชาดไทย — เลือกบทที่ต้องการทดสอบ (50 ข้อต่อบท)</div>
+        </div>
+        <div className="field"><label>เลือกบทที่ต้องการทดสอบ *</label>
+          <div className="cg">
+            {CH.map((c,i)=>(
+              <div key={i} className={`cb${ci===i?' active':''}`} onClick={()=>setCi(i)}>
+                <div className="cn">บทที่ {c.num}</div>
+                <div className="ct">{c.titleTH}</div>
+                <div className="ce">{c.title}</div>
+                <div style={{fontSize:11,color:'var(--m)',marginTop:3,fontWeight:700}}>40 MCQ + 10 จับคู่ = 50 ข้อ</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="row2">
+          <div className="field"><label>ชื่อ *</label><input type="text" value={fn} onChange={e=>setFn(e.target.value)} placeholder="กรอกชื่อ"/></div>
+          <div className="field"><label>นามสกุล *</label><input type="text" value={ln} onChange={e=>setLn(e.target.value)} placeholder="กรอกนามสกุล"/></div>
+        </div>
+        <div className="field"><label>ประเภทเภสัชกร *</label>
+          <select value={pt} onChange={e=>setPt(e.target.value)}>
+            <option value="">-- เลือกประเภท --</option>
+            <option value="FULLTIME">เภสัชกร FULLTIME</option>
+            <option value="PART-TIME">เภสัชกร PART-TIME</option>
+          </select>
+        </div>
+        {ne&&<div className="alert">{ne}</div>}
+        <button className="btn" onClick={go}>เริ่มทำแบบทดสอบ</button>
+        <span className="lk" onClick={openA}>🔐 Admin</span>
+      </div>
+    </div>
+  );
+  if(stage==='quiz'){
+    const pp=Math.round((ans/TOT)*100);
+    return(<div>
+      <div className="card" style={{padding:'16px 18px'}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:5}}>
+          <span style={{fontSize:13.5,fontWeight:700,color:'var(--m)'}}>{fn} {ln} <span className={`fb f${pt==='FULLTIME'?'F':'P'}`}>{pt}</span></span>
+          <span style={{fontSize:12,color:'#7a6a5d'}}>{ans}/{TOT} ข้อ</span>
+        </div>
+        <div style={{fontSize:12,color:'#7a6a5d',marginBottom:5}}>บทที่ {ch.num}: {ch.titleTH}</div>
+        <div className="pt"><span>ความคืบหน้า</span><span>{pp}%</span></div>
+        <div className="pw"><div className="pb" style={{width:pp+'%'}}></div></div>
+      </div>
+      {secs.map(sec=>{
+        const qs=ch.mcq.map((q,i)=>({...q,qi:i})).filter(q=>q.sec===sec);
+        return(<div key={sec} className="card">
+          <div className="st">📌 {sec}</div>
+          {qs.map(({q,o,c,qi})=>(
+            <div className="qblock" key={qi}>
+              <div className="qh"><div className="qn">{qi+1}</div><div className="qt">{q}</div></div>
+              {o.map((opt,oi)=>{let cls='opt';if(ma[qi]!==null){if(oi===c)cls+=' ok';else if(oi===ma[qi])cls+=' ng';}return(<div key={oi} className={cls} onClick={()=>sm(qi,oi)}><span className="ol">{String.fromCharCode(65+oi)}.</span><span>{opt}</span></div>);})}
+            </div>
+          ))}
+        </div>);
+      })}
+      {ch.match.map((m,si)=>{
+        const off=ch.mcq.length+ch.match.slice(0,si).reduce((s,x)=>s+x.left.length,0);
+        return(<div key={si} className="card">
+          <div className="st">🔗 {m.title}</div>
+          {m.left.map((item,li)=>(
+            <div className="qblock" key={li}>
+              <div className="qh"><div className="qn">{off+li+1}</div><div className="qt">จับคู่: <strong>{item}</strong></div></div>
+              {(()=>{const answered=xa[si]&&xa[si][li]!=='';const ok=answered&&xa[si][li]===m.right[m.correct[li]];const cls=answered?(ok?'mr ok':'mr ng'):'mr';return(<div className={cls}><div className="ml">{item}</div><div style={{flex:2}}><select value={xa[si]?xa[si][li]:''} onChange={e=>sx(si,li,e.target.value)} style={{width:'100%',padding:'8px',border:`1.5px solid ${answered?(ok?'var(--green)':'var(--red)'):'var(--line)'}`,borderRadius:'7px',fontSize:'13px',fontFamily:'inherit',background:answered?(ok?'#e9f7ec':'#fbeae8'):'#fff'}}><option value="">-- เลือก --</option>{sr[si]&&sr[si].map((opt,oi)=><option key={oi} value={opt}>{opt}</option>)}</select>{answered&&!ok&&<div style={{fontSize:'11.5px',color:'var(--green)',marginTop:'4px'}}>✓ เฉลย: {m.right[m.correct[li]]}</div>}</div></div>);})()}
+            </div>
+          ))}
+        </div>);
+      })}
+      <div className="card">
+        <button className="btn" disabled={ans<TOT} onClick={submit}>ส่งคำตอบ</button>
+        {ans<TOT&&<p style={{textAlign:'center',fontSize:12,color:'#a87060',marginTop:7}}>ยังตอบไม่ครบ — เหลือ {TOT-ans} ข้อ</p>}
+      </div>
+    </div>);
+  }
+  if(stage==='result'){
+    const [gl,gc]=gr(sc);
+    return(<div>
+      <div className="card">
+        <div className="rs">
+          <div className="bp">{sc}%</div>
+          <div className="bs">ตอบถูก <strong>{cc}</strong> จาก <strong>{TOT}</strong> ข้อ</div>
+          <div style={{marginTop:8}}><span className={`badge ${gc}`}>{gl}</span><span className={`fb f${pt==='FULLTIME'?'F':'P'}`} style={{marginLeft:6}}>{pt}</span></div>
+          <div style={{fontSize:13,color:'#7a6a5d',marginTop:6}}>{fn} {ln} | บทที่ {ch.num}: {ch.titleTH}</div>
+        </div>
+      </div>
+      {secs.map(sec=>{
+        const qs=ch.mcq.map((q,i)=>({...q,qi:i})).filter(q=>q.sec===sec);
+        return(<div key={sec} className="card">
+          <div className="st">📌 {sec}</div>
+          {qs.map(({q,o,c:ca,qi})=>(
+            <div className="qblock" key={qi}>
+              <div className="qh"><div className="qn">{qi+1}</div><div className="qt">{q}</div></div>
+              {o.map((opt,oi)=>{let cls='opt';if(oi===ca)cls+=' ok';else if(oi===ma[qi])cls+=' ng';return(<div key={oi} className={cls}><span className="ol">{String.fromCharCode(65+oi)}.</span><span>{opt}</span></div>);})}
+            </div>
+          ))}
+        </div>);
+      })}
+      {ch.match.map((m,si)=>{
+        const off=ch.mcq.length+ch.match.slice(0,si).reduce((s,x)=>s+x.left.length,0);
+        return(<div key={si} className="card">
+          <div className="st">🔗 {m.title}</div>
+          {m.left.map((item,li)=>{const ok=xa[si]&&xa[si][li]===m.right[m.correct[li]];return(
+            <div className="qblock" key={li}>
+              <div className="qh"><div className="qn">{off+li+1}</div><div className="qt">{item}</div></div>
+              <div className={`mr ${ok?'ok':'ng'}`}><div className="ml">{item}</div><div style={{flex:2,padding:'9px 11px',border:`1.5px solid ${ok?'var(--green)':'var(--red)'}`,borderRadius:7,background:ok?'#e9f7ec':'#fbeae8',fontSize:13.5}}>
+                {xa[si]&&xa[si][li]||'(ไม่ได้ตอบ)'}
+                {!ok&&<div style={{fontSize:11.5,color:'var(--green)',marginTop:4}}>✓ เฉลย: {m.right[m.correct[li]]}</div>}
+              </div></div>
+            </div>
+          );})}
+        </div>);
+      })}
+      <div className="card" style={{display:'flex',gap:10}}>
+        <button className="btn btn-s" onClick={()=>{setSub(false);setStage('home');}}>กลับหน้าหลัก</button>
+        <div style={{flex:1}}/>
+        <div style={{fontSize:12,color:'#9a7a6a',alignSelf:'center'}}>คะแนนถูกบันทึกแล้ว</div>
+      </div>
+    </div>);
+  }
+  if(stage==='alog') return(<div className="card">
+    <h1 style={{marginBottom:12}}>🔐 Admin Login</h1>
+    <div className="field"><label>PIN</label><input type="password" value={pin} onChange={e=>setPin(e.target.value)} onKeyDown={e=>e.key==='Enter'&&chkP()} placeholder="กรอก PIN"/></div>
+    {pe&&<div className="alert">{pe}</div>}
+    <div style={{display:'flex',gap:10}}><button className="btn" onClick={chkP} disabled={la}>{la?'กำลังโหลด...':'ยืนยัน'}</button><button className="btn btn-s" onClick={()=>setStage('home')}>กลับ</button></div>
+  </div>);
+  if(stage==='aview'){
+    const avg=a=>a.length?Math.round(a.reduce((s,r)=>s+r.score,0)/a.length*10)/10:'-';
+    const ft=ar.filter(r=>r.type==='FULLTIME');const pt2=ar.filter(r=>r.type==='PART-TIME');
+    return(<div className="card">
+      <h1 style={{marginBottom:6}}>📊 ผลคะแนนทั้งหมด ({ar.length} รายการ)</h1>
+      <div className="sub" style={{marginBottom:14}}>FULLTIME {ft.length} คน avg {avg(ft)}% | PART-TIME {pt2.length} คน avg {avg(pt2)}%</div>
+      <table><thead><tr><th>#</th><th>ชื่อ-นามสกุล</th><th>ประเภท</th><th>บท</th><th>%</th><th>ถูก/รวม</th><th>เวลา</th></tr></thead><tbody>
+        {ar.length===0&&<tr><td colSpan="7" style={{textAlign:'center',color:'#999',padding:14}}>ยังไม่มีข้อมูล</td></tr>}
+        {ar.map((r,i)=>(<tr key={i}><td>{i+1}</td><td>{r.name}</td><td><span className={`fb f${r.type==='FULLTIME'?'F':'P'}`}>{r.type}</span></td><td style={{fontSize:11.5}}>{r.ch}</td><td><strong>{r.score}</strong></td><td>{r.correct}/{r.total}</td><td style={{fontSize:11}}>{r.time}</td></tr>))}
+      </tbody></table>
+      <button className="btn btn-s" style={{marginTop:14}} onClick={()=>setStage('home')}>กลับ</button>
+    </div>);
+  }
+  return null;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
